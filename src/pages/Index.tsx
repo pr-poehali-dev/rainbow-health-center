@@ -51,8 +51,8 @@ function NavBar() {
   return (
     <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50, background: "rgba(255,255,255,0.97)", backdropFilter: "blur(8px)", borderBottom: "1px solid #e8f0ee" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
-        <a href="#" style={{ display: "flex", alignItems: "center", gap: 12, textDecoration: "none" }}>
-          <div style={{ width: 40, height: 40, borderRadius: "50%", background: TEAL, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20 }}>🌈</div>
+        <a href="#" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
+          <img src="https://cdn.poehali.dev/projects/3eae3c75-3228-4881-8e8e-f72c1dc566e0/bucket/857e3fee-7628-4d92-9c70-d7a0946b1798.png" alt="Радуга Здоровья" style={{ height: 52, width: "auto", objectFit: "contain" }} />
           <div>
             <div style={{ fontFamily: "Cormorant, serif", fontWeight: 600, fontSize: 20, color: TEAL_DARK, lineHeight: 1.2 }}>Радуга Здоровья</div>
             <div style={{ fontFamily: "Golos Text, sans-serif", fontSize: 11, color: MUTED }}>Медицинский центр · Липецк</div>
@@ -523,6 +523,9 @@ function BookingSection() {
 }
 
 function ContactsSection() {
+  const labelStyle = { fontFamily: "Golos Text, sans-serif", fontSize: 11, fontWeight: 600, textTransform: "uppercase" as const, letterSpacing: "0.1em", color: MUTED, marginBottom: 6 };
+  const valueStyle = { fontFamily: "Golos Text, sans-serif", fontSize: 14, color: TEXT, margin: "0 0 4px" };
+
   return (
     <section id="contacts" style={{ padding: "80px 24px", background: BG_WARM }}>
       <div style={{ maxWidth: 1280, margin: "0 auto" }}>
@@ -538,21 +541,84 @@ function ContactsSection() {
           </a>
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 20 }}>
-          {[
-            { icon: "Phone", title: "Телефон", content: <a href="tel:906868" style={{ display: "block", fontFamily: "Golos Text, sans-serif", fontSize: 22, fontWeight: 700, color: TEAL, textDecoration: "none", margin: "4px 0" }}>90-68-68</a>, sub: "Пн–Сб: 8:00–20:00" },
-            { icon: "MapPin", title: "Адрес", content: <p style={{ fontFamily: "Golos Text, sans-serif", fontSize: 16, color: TEXT, margin: "4px 0" }}>г. Липецк</p>, sub: "2 отделения в городе" },
-            { icon: "Clock", title: "График работы", content: <><p style={{ fontFamily: "Golos Text, sans-serif", fontSize: 15, color: TEXT, margin: "4px 0" }}>Пн–Пт: 8:00–20:00</p><p style={{ fontFamily: "Golos Text, sans-serif", fontSize: 15, color: TEXT, margin: "0" }}>Сб: 9:00–16:00</p></>, sub: "Вс: выходной" },
-          ].map(({ icon, title, content, sub }) => (
-            <div key={title} style={{ background: "white", borderRadius: 22, padding: "28px", boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}>
-              <div style={{ width: 46, height: 46, borderRadius: 14, background: TEAL_LIGHT, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
-                <Icon name={icon} size={22} style={{ color: TEAL }} />
-              </div>
-              <h3 style={{ fontFamily: "Cormorant, serif", fontSize: 20, fontWeight: 600, color: TEXT, marginBottom: 4 }}>{title}</h3>
-              {content}
-              <p style={{ fontFamily: "Golos Text, sans-serif", fontSize: 12, color: MUTED, marginTop: 6 }}>{sub}</p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 20, marginBottom: 20 }}>
+          {/* Телефоны */}
+          <div style={{ background: "white", borderRadius: 22, padding: "28px", boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}>
+            <div style={{ width: 46, height: 46, borderRadius: 14, background: TEAL_LIGHT, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
+              <Icon name="Phone" size={22} style={{ color: TEAL }} />
             </div>
-          ))}
+            <h3 style={{ fontFamily: "Cormorant, serif", fontSize: 20, fontWeight: 600, color: TEXT, marginBottom: 14 }}>Наши телефоны</h3>
+            {[
+              { num: "72-10-60", label: "Остеопатия" },
+              { num: "90-68-68", label: "Остеопатия" },
+              { num: "90-14-00", label: "Педиатрия" },
+              { num: "90-06-33", label: "Анализы" },
+            ].map(({ num, label }) => (
+              <div key={num} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+                <a href={`tel:${num.replace(/-/g, "")}`} style={{ fontFamily: "Golos Text, sans-serif", fontSize: 17, fontWeight: 700, color: TEAL, textDecoration: "none" }}>{num}</a>
+                <span style={{ fontFamily: "Golos Text, sans-serif", fontSize: 12, color: MUTED, background: TEAL_LIGHT, padding: "2px 8px", borderRadius: 100 }}>{label}</span>
+              </div>
+            ))}
+            <div style={{ marginTop: 12, paddingTop: 12, borderTop: "1px solid #e8f0ee" }}>
+              <p style={{ fontFamily: "Golos Text, sans-serif", fontSize: 12, color: MUTED, margin: 0 }}>Пн–Сб: 8:00–20:00</p>
+            </div>
+          </div>
+
+          {/* Адреса */}
+          <div style={{ background: "white", borderRadius: 22, padding: "28px", boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}>
+            <div style={{ width: 46, height: 46, borderRadius: 14, background: TEAL_LIGHT, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
+              <Icon name="MapPin" size={22} style={{ color: TEAL }} />
+            </div>
+            <h3 style={{ fontFamily: "Cormorant, serif", fontSize: 20, fontWeight: 600, color: TEXT, marginBottom: 14 }}>Наши отделения</h3>
+            <div style={{ marginBottom: 14 }}>
+              <p style={labelStyle}>Отделение 1</p>
+              <p style={{ ...valueStyle, fontWeight: 500 }}>ул. Белянского, д.8</p>
+              <p style={{ fontFamily: "Golos Text, sans-serif", fontSize: 12, color: MUTED, margin: 0 }}>г. Липецк</p>
+            </div>
+            <div>
+              <p style={labelStyle}>Отделение 2</p>
+              <p style={{ ...valueStyle, fontWeight: 500 }}>ул. Политехническая, д.7</p>
+              <p style={{ fontFamily: "Golos Text, sans-serif", fontSize: 12, color: MUTED, margin: 0 }}>г. Липецк</p>
+            </div>
+          </div>
+
+          {/* Почта и график */}
+          <div style={{ background: "white", borderRadius: 22, padding: "28px", boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}>
+            <div style={{ width: 46, height: 46, borderRadius: 14, background: TEAL_LIGHT, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}>
+              <Icon name="Mail" size={22} style={{ color: TEAL }} />
+            </div>
+            <h3 style={{ fontFamily: "Cormorant, serif", fontSize: 20, fontWeight: 600, color: TEXT, marginBottom: 14 }}>Почта и график</h3>
+            <div style={{ marginBottom: 16 }}>
+              <p style={labelStyle}>Электронная почта</p>
+              <a href="mailto:radugazd2018@yandex.ru" style={{ fontFamily: "Golos Text, sans-serif", fontSize: 14, color: TEAL, textDecoration: "none", wordBreak: "break-all" as const }}>
+                radugazd2018@yandex.ru
+              </a>
+            </div>
+            <div>
+              <p style={labelStyle}>График работы</p>
+              <p style={valueStyle}>Пн–Пт: 8:00–20:00</p>
+              <p style={valueStyle}>Сб: 9:00–16:00</p>
+              <p style={{ fontFamily: "Golos Text, sans-serif", fontSize: 12, color: MUTED, margin: 0 }}>Вс: выходной</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Реквизиты */}
+        <div style={{ background: "white", borderRadius: 22, padding: "24px 28px", boxShadow: "0 2px 12px rgba(0,0,0,0.04)" }}>
+          <h3 style={{ fontFamily: "Cormorant, serif", fontSize: 18, fontWeight: 600, color: TEXT, marginBottom: 12 }}>Реквизиты</h3>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px 40px" }}>
+            {[
+              ['Организация', 'ООО Медицинский центр «Радуга Здоровья»'],
+              ['ИНН', '4826127738'],
+              ['КПП', '482601001'],
+              ['ОГРН', '1164827072112'],
+            ].map(([label, val]) => (
+              <div key={label}>
+                <span style={{ fontFamily: "Golos Text, sans-serif", fontSize: 11, color: MUTED, textTransform: "uppercase", letterSpacing: "0.08em" }}>{label}: </span>
+                <span style={{ fontFamily: "Golos Text, sans-serif", fontSize: 13, color: TEXT, fontWeight: 500 }}>{val}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -564,11 +630,11 @@ function Footer() {
     <footer style={{ padding: "24px", borderTop: "1px solid #e8f0ee", background: "white" }}>
       <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <span style={{ fontSize: 22 }}>🌈</span>
+          <img src="https://cdn.poehali.dev/projects/3eae3c75-3228-4881-8e8e-f72c1dc566e0/bucket/857e3fee-7628-4d92-9c70-d7a0946b1798.png" alt="Радуга Здоровья" style={{ height: 36, width: "auto" }} />
           <span style={{ fontFamily: "Cormorant, serif", fontSize: 17, fontWeight: 600, color: TEAL_DARK }}>Радуга Здоровья</span>
         </div>
         <p style={{ fontFamily: "Golos Text, sans-serif", fontSize: 12, color: MUTED, margin: 0 }}>
-          © 2024 Медицинский центр «Радуга Здоровья». г. Липецк
+          © 2026 Медицинский центр «Радуга Здоровья». г. Липецк
         </p>
         <a href="tel:906868" style={{ fontFamily: "Golos Text, sans-serif", fontSize: 15, fontWeight: 600, color: TEAL, textDecoration: "none" }}>90-68-68</a>
       </div>
