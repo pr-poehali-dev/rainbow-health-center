@@ -4,17 +4,17 @@ import Icon from "@/components/ui/icon";
 const CLINIC_IMAGE = "https://cdn.poehali.dev/projects/3eae3c75-3228-4881-8e8e-f72c1dc566e0/files/51e9e9b3-1411-48ce-9f26-f67da0da2ddf.jpg";
 
 const doctors = [
-  { name: "Марченко С.Е.", role: "ЛОР, главный врач", spec: "Дети и взрослые", exp: "", cat: "" },
-  { name: "Бахмут Н.Ю.", role: "Невролог, остеопат", spec: "Нервная система, головные боли", exp: "26 лет", cat: "Высшая категория" },
-  { name: "Бахмут К.Ю.", role: "Остеопат, кинезиолог", spec: "Боли, стресс, восстановление", exp: "", cat: "" },
-  { name: "Мухина Е.М.", role: "Остеопат, педиатр", spec: "Беременные, дети раннего возраста", exp: "", cat: "" },
-  { name: "Хороших И.Ю.", role: "Остеопат", spec: "Дети с 1 месяца, неврология", exp: "", cat: "" },
-  { name: "Растрыгина Ж.А.", role: "Педиатр", spec: "Наблюдение, лечение, вакцинация", exp: "", cat: "" },
-  { name: "Попов О.А.", role: "Массажист", spec: "Взрослые/дети, грыжи, травмы", exp: "", cat: "" },
-  { name: "Либенко С.А.", role: "Детский массажист", spec: "Развитие детей 0–7 лет", exp: "", cat: "" },
-  { name: "Чепурнова Т.М.", role: "Гинеколог", spec: "Диагностика и лечение", exp: "23 года", cat: "Высшая категория" },
-  { name: "Абрамова О.Н.", role: "Гинеколог, врач УЗИ", spec: "Гинекология, ультразвуковая диагностика", exp: "25 лет", cat: "Высшая категория" },
-  { name: "Проскурякова Т.В.", role: "Врач УЗИ", spec: "Органы, беременность, дети", exp: "45 лет", cat: "Высшая категория" },
+  { name: "Марченко С.Е.", role: "ЛОР, главный врач", spec: "Дети и взрослые", exp: "", cat: "", photo: "" },
+  { name: "Бахмут Н.Ю.", role: "Невролог, остеопат", spec: "Нервная система, головные боли", exp: "26 лет", cat: "Высшая категория", photo: "" },
+  { name: "Бахмут Кирилл Юрьевич", role: "Остеопат", spec: "Боли, стресс, восстановление", exp: "26 лет", cat: "Высшая категория", photo: "https://cdn.poehali.dev/files/ce2aae14-ae3b-4a43-b3b3-bb00ef2523fb.png" },
+  { name: "Мухина Е.М.", role: "Остеопат, педиатр", spec: "Беременные, дети раннего возраста", exp: "", cat: "", photo: "" },
+  { name: "Хороших Ирина Юрьевна", role: "Доктор остеопатии", spec: "Дети с 1 месяца, неврология", exp: "13 лет", cat: "Член РОсА", photo: "https://cdn.poehali.dev/files/6cdc3cad-6b6f-45cb-889d-4409cd9063ff.png" },
+  { name: "Растрыгина Жанна Александровна", role: "Педиатр", spec: "Наблюдение, лечение, вакцинация", exp: "30 лет", cat: "Высшая категория", photo: "https://cdn.poehali.dev/files/23066e9d-24ba-4f6b-9993-9358e9eccc70.png" },
+  { name: "Попов Олег Анатольевич", role: "Массажист", spec: "Взрослые/дети, грыжи, травмы", exp: "31 год", cat: "", photo: "https://cdn.poehali.dev/files/983b99ce-4288-4180-b42c-4c89531efafd.png" },
+  { name: "Либенко Светлана Анатольевна", role: "Детский массажист", spec: "Развитие детей 0–7 лет", exp: "29 лет", cat: "Высшая категория", photo: "https://cdn.poehali.dev/files/628d83f3-71b2-4f8b-8ef5-029db06b3061.png" },
+  { name: "Чепурнова Т.М.", role: "Гинеколог", spec: "Диагностика и лечение", exp: "23 года", cat: "Высшая категория", photo: "" },
+  { name: "Абрамова О.Н.", role: "Гинеколог, врач УЗИ", spec: "Гинекология, ультразвуковая диагностика", exp: "25 лет", cat: "Высшая категория", photo: "" },
+  { name: "Проскурякова Т.В.", role: "Врач УЗИ", spec: "Органы, беременность, дети", exp: "45 лет", cat: "Высшая категория", photo: "" },
 ];
 
 const directions = [
@@ -271,12 +271,16 @@ function DoctorCard({ doctor, idx }: { doctor: typeof doctors[0]; idx: number })
     <div style={{ background: "white", borderRadius: 20, overflow: "hidden", boxShadow: "0 2px 12px rgba(0,0,0,0.05)", display: "flex", flexDirection: "column", transition: "all 0.2s" }}
       onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 12px 32px rgba(45,140,122,0.15)"; (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)"; }}
       onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 12px rgba(0,0,0,0.05)"; (e.currentTarget as HTMLElement).style.transform = "none"; }}>
-      <div style={{ height: 140, display: "flex", alignItems: "center", justifyContent: "center", background: `linear-gradient(135deg, ${color}15, ${color}28)`, position: "relative" }}>
-        <div style={{ width: 80, height: 80, borderRadius: "50%", background: color, display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontSize: 22, fontFamily: "Cormorant, serif", fontWeight: 700 }}>
-          {initials}
-        </div>
+      <div style={{ height: doctor.photo ? 220 : 140, display: "flex", alignItems: "center", justifyContent: "center", background: doctor.photo ? "transparent" : `linear-gradient(135deg, ${color}15, ${color}28)`, position: "relative", overflow: "hidden" }}>
+        {doctor.photo ? (
+          <img src={doctor.photo} alt={doctor.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center" }} />
+        ) : (
+          <div style={{ width: 80, height: 80, borderRadius: "50%", background: color, display: "flex", alignItems: "center", justifyContent: "center", color: "white", fontSize: 22, fontFamily: "Cormorant, serif", fontWeight: 700 }}>
+            {initials}
+          </div>
+        )}
         {doctor.cat && (
-          <div style={{ position: "absolute", top: 10, right: 10, padding: "4px 10px", borderRadius: 100, background: GOLD_LIGHT, color: GOLD, fontFamily: "Golos Text, sans-serif", fontSize: 11, fontWeight: 600 }}>
+          <div style={{ position: "absolute", bottom: 10, left: 10, padding: "4px 10px", borderRadius: 100, background: doctor.photo ? "rgba(255,255,255,0.92)" : GOLD_LIGHT, color: GOLD, fontFamily: "Golos Text, sans-serif", fontSize: 11, fontWeight: 600, backdropFilter: "blur(4px)" }}>
             ★ {doctor.cat}
           </div>
         )}
